@@ -1,0 +1,18 @@
+TODO
+
+MVP
+
+When you install the Chrome Extension, you should be able to connect to the
+network of nodes and assume membership of network, and be able to search for
+keywords immediately.
+
+✓ Recovering from browser exit
+
+Pending
+
+- provide news for a default subreddit
+- Add more information on popup
+- Add local search for PLOS, ArXiV, PubMed and other APIs.
+
+Backlog
+

@@ -86,15 +86,15 @@ function refresh_links() {
   update_refresh_time();
 }
 
-//Submit the current tab
+//Submit the current tab - not functional
 function submit_cur_tab() {
-  chrome.windows.getCurrent(function(win){
-    chrome.tabs.getSelected(win.id, function(tab){
-      //var submit_url = "http://reddit.com/submit?u=" + encodeURIComponent(tab.url) + "&t=" + encodeURIComponent(tab.title);
-      var submit_url = "https://www.reddit.com/submit";
-      var win = window.open(submit_url, '_blank');
-      win.focus();
-    });
-  });
+  chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+        var reddit_submit = "https://www.reddit.com/submit";
+        var submit_url = tabs[0].url;
+        var submit_title = tabs[0].title;
+        var win=  window.open(reddit_submit, '_blank');
+        win.focus();
+      }
+  );
 }
 
