@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Reddit News",
+  "version": "3.20.1",
+  "description": "Displays recent stories from Reddit",
+  "icons": { "48": "icon48.png",
+	           "128": "icon128.png" },
+  "browser_action": {
+    "default_title": "Reddit News",
+    "default_icon": "icon18.png",
+    "default_popup": "popup.html"
+  },
+	"background": {
+    "page": "background.html"
+  },
+	"options_page":"options.html",
+  "permissions": [
+    "tabs",
+    "https://www.reddit.com/",
+    "http://www.reddit.com/",
+    "notifications"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://www.reddit.com/; object-src 'self' 'unsafe-eval' https://www.reddit.com/"
+}

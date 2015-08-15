@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Reddit News for Google Chrome Options</title>
+	<script src="jquery.js"></script>
+	<script src="core.js"></script>
+	<script src="options.js"></script>
+	<link href="style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body id='OptionsPage'>
+	<div id="container">
+		<div id="header">
+			<img src="icon18.png" />
+			<span id="title">Options</span>
+		</div>
+		<div id="feed">
+			<label for="number_events">Number of stories:</label>
+			<select id="number_events" name="number_events">
+				<option value="1">1</option>
+				<option value="5">5</option>
+				<option	selected="selected" value="10">10</option>
+				<option value="15">15</option>
+				<option value="20">20</option>
+			</select><br/><br/><br/>
+			<label for="RequestInterval">Update stories every:</label>
+			<select id="RequestInterval" name="RequestInterval">
+				<option value="300000">5 minutes</option>
+				<option value="600000">10 minutes</option>
+				<option	value="900000">15 minutes</option>
+				<option value="1200000">20 minutes</option>
+				<option value="1800000">30 minutes</option>
+				<option value="2700000">45 minutes</option>
+				<option value="3600000">1 hour</option>
+			</select><br/><br/><br/>
+			<label for="BackgroundTabs">Open story links in background tabs?</label><br/>
+			<input type="radio" class='background-tabs-radio' name="BackgroundTabs" value="true"> Yes
+			<input type="radio" class="second-radio background-tabs-radio" name="BackgroundTabs" value="false"> No<br/>
+			<p>:: Created by <b>Chester Holtz</b> :: <a href='chesterholtz.me' target='_blank'>www.chesterholtz.me</a><p>
+			<p>:: Inspired by <b>Adam Albright's</b> :: <a href='https://github.com/adamalbrecht/hacker-news-for-chrome' target='_blank'>hacker-news-for-chrome</a><p>
+			<a href='https://github.com/Choltz95/reddit-news-for-chrome/issues' target='_blank'>Report an Issue</a>
+		</div>
+	</div>
+</body>
+</html>
