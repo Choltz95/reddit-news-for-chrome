@@ -1,6 +1,7 @@
 var maxFeedItems;
 if(localStorage["reddit_max_events"]==null) {maxFeedItems=10;}
 else {maxFeedItems = parseInt(localStorage["reddit_max_events"]);}
+var selected_subreddit = localStorage["reddit_subreddit"];
 
 var req;
 var buildPopupAfterResponse = false;
@@ -32,7 +33,7 @@ function update_if_ready(force) {
 }
 
 function update_feed() {
-  $.ajax({type:'GET', dataType:'xml', url: 'https://www.reddit.com/.rss', timeout:5000, success:rss_success, error:rss_err, async: false});
+  $.ajax({type:'GET', dataType:'xml', url: 'https://www.reddit.com/'+selected_subreddit+'.rss', timeout:5000, success:rss_success, error:rss_err, async: false});
 }
 
 function rss_success(doc) {

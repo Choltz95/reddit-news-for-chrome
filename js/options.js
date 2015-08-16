@@ -8,15 +8,17 @@ for (i = 0; i < localStorage.length; i++)   {
 
 $(function(){
   restore_options();
-  $('.background-tabs-radio, #RequestInterval, #number_events').change(function(){
+  $('.background-tabs-radio, #RequestInterval, #number_events, #subreddit').change(function(){
     save_options();
   });
 });
+var selectSubreddit;
 var selectMaxEvents;
 var selectReqInterval;
 var radioBackgroundTabs;
 
 function init_variables() {
+  selectSubreddit = document.getElementById("subreddit");
   selectMaxEvents = document.getElementById("number_events");
   selectReqInterval = document.getElementById("RequestInterval");
   radioBackgroundTabs = document.getElementsByName("BackgroundTabs");
@@ -24,6 +26,13 @@ function init_variables() {
 
 function restore_options() {
   init_variables();
+  var sub = localStorage["reddit_subreddit"];
+  for (var i=0; i<selectSubreddit.children.length; i++) {
+    if (selectSubreddit[i].value == sub) {
+      selectSubreddit[i].selected = "true";
+      break;
+    }
+  }  
   var events = localStorage["reddit_max_events"];
   for (var i=0; i<selectMaxEvents.children.length; i++) {
     if (selectMaxEvents[i].value == events) {
@@ -47,6 +56,9 @@ function restore_options() {
 }
 
 function save_options() {
+  var subred = selectSubreddit.children[selectSubreddit.selectedIndex].value;
+  localStorage["reddit_subreddit"] = subred;
+
   var stories = selectMaxEvents.children[selectMaxEvents.selectedIndex].value;
   localStorage["reddit_max_events"] = stories;
 

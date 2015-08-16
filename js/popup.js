@@ -3,7 +3,7 @@ window.onload = function(){
   init_events();
 };
 function init_events() {
-  $('#submitLink').click(submit_cur_tab);
+//  $('#submitLink').click(submit_cur_tab);
   $('#refresh').click(refresh_links);
   $('#searchbox').keypress(search_on_enter);
   $('#options').click(function(){
@@ -24,6 +24,9 @@ function build_popup(links) {
   var header = document.getElementById("header");
   var feed = document.getElementById("feed");
   var issueLink = document.getElementById("issues");
+  if(localStorage["reddit_subreddit"]=="") {$("#subreddit").text("Front Page");}
+  else {$("#subreddit").text(localStorage["reddit_subreddit"]);}
+
   issueLink.addEventListener("click", open_link_front);
 
   //Setup Title Link
@@ -87,7 +90,7 @@ function refresh_links() {
 }
 
 //Submit the current tab - not functional
-function submit_cur_tab() {
+/*function submit_cur_tab() {
   chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
         var reddit_submit = "https://www.reddit.com/submit";
         var submit_url = tabs[0].url;
@@ -96,5 +99,5 @@ function submit_cur_tab() {
         win.focus();
       }
   );
-}
+}*/
 

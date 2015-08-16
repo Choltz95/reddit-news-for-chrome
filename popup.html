@@ -8,19 +8,22 @@
 <link href="style/main.css" rel="stylesheet" type="text/css"/>
 <style>
   body {overflow: hidden;}
-  #container, #spinner {width:350px;}
+  #container, #spinner, #image {width:350px;}
 </style>
 </head>
 <body>
 	<div id="spinner" style="display:none">
 		<img src="images/ajax-loader.gif">
 	</div>
+	<div id="image" style="display:none">
+	</div>
 	<div id="container" class="popup-container">
 		<div id="header">
 			<img src="images/header.png" height="18" width="18">
-			<a id="title" href="http://news.ycombinator.com">Reddit News</a>
+			<a id="title" href="http://reddit.com">Reddit News</a>
 			<span>|</span>
-			<a id="submitLink" href="">Submit Current Page</a> 
+			<!--<a id="submitLink" href="">Submit Current Page</a>-->
+			<a id="subreddit" href=""></a>
 		</div>
 		<div id="search">
       <input type="text" id="searchbox" name="searchbox" placeholder="search by subreddit..." />
