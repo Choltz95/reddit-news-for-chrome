@@ -93,7 +93,7 @@ function parse_post_links(doc) {
     itemLink = doc.firstChild;
 
     if (!itemLink) {
-      itemLink = item.getElementsByTagName('comments')[0];
+      itemLink = item.getElementsByTagName('link')[0];
     }
     if (itemLink) {
       post_link.Link = itemLink.textContent;
@@ -108,10 +108,26 @@ function parse_post_links(doc) {
     } else {
       post_link.CommentsLink = '';
     }
-    
+
+    post_link.num_comments = get_num_comments(commentsLink.textContent);
+
     links.push(post_link);
   }
   return links;
+}
+
+function get_num_comments(link) {
+  var num_comments;
+  var address = link + ".json?";
+  $.ajax({
+    url: laddress,
+    dataType: 'json',
+    async: false,
+    success: function(data) {
+      num_comments = parseInt(data[0].data.children[0].data.num_comments);
+    }
+  });
+  return num_comments;
 }
 
 function save_links(links) {

@@ -51,7 +51,7 @@ function build_popup(links) {
       title.addEventListener("click", open_link);
     var comments = document.createElement("a");
       comments.className = "comments";
-      comments.innerText = "(comments)";
+      comments.innerText = post_link.num_comments + " comments";
       comments.href = post_link.CommentsLink;
       comments.addEventListener("click", open_link);
     link_col.appendChild(title);

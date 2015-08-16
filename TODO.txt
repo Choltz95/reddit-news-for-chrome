@@ -10,6 +10,7 @@ keywords immediately.
 
 Pending
 
+- switch to use json from rss
 - provide news for a default subreddit
 - Add more information on popup
 - Add local search for PLOS, ArXiV, PubMed and other APIs.
