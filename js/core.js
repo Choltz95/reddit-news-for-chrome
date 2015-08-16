@@ -33,7 +33,22 @@ function update_if_ready(force) {
 }
 
 function update_feed() {
-  $.ajax({type:'GET', dataType:'xml', url: 'https://www.reddit.com/'+selected_subreddit+'.rss', timeout:5000, success:rss_success, error:rss_err, async: false});
+  $.ajax({type:'GET', dataType:'xml', url: 'https://www.reddit.com/'+selected_subreddit+'.rss', timeout:5000, success:rss_success, error:feed_err, async: false});
+}
+
+function get_num_comments(link) {
+  var num_comments;
+  var address = link + ".json?";
+  $.ajax({
+    url: address,
+    dataType: 'json',
+    async: false,
+    success: function(data) {
+      num_comments = parseInt(data[0].data.children[0].data.num_comments);
+    },
+    error: feed_err
+  });
+  return num_comments;
 }
 
 function rss_success(doc) {
@@ -54,8 +69,8 @@ function update_refresh_time() {
   localStorage["reddit_last_refresh"] = (new Date()).getTime();
 }
 
-function rss_err(xhr, type, error) {
-  rss_parse_err('Failed to fetch RSS feed.');
+function feed_err(xhr, type, error) {
+  rss_parse_err('Failed to fetch feed.');
 }
 
 function rss_parse_err(error) {
@@ -103,32 +118,20 @@ function parse_post_links(doc) {
 
     //Grab the comments link
     var commentsLink = item.getElementsByTagName('link')[0];
+    var commentsLinkText = commentsLink.textContent;
     if (commentsLink) {
-      post_link.CommentsLink = commentsLink.textContent;
+      post_link.CommentsLink = commentsLinkText;
     } else {
       post_link.CommentsLink = '';
     }
 
-    post_link.num_comments = get_num_comments(commentsLink.textContent);
+    post_link.num_comments = get_num_comments(commentsLinkText);
 
     links.push(post_link);
   }
   return links;
 }
 
-function get_num_comments(link) {
-  var num_comments;
-  var address = link + ".json?";
-  $.ajax({
-    url: laddress,
-    dataType: 'json',
-    async: false,
-    success: function(data) {
-      num_comments = parseInt(data[0].data.children[0].data.num_comments);
-    }
-  });
-  return num_comments;
-}
 
 function save_links(links) {
 	localStorage["reddit_num_links"] = links.length;
