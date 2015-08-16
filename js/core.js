@@ -36,19 +36,20 @@ function update_feed() {
   $.ajax({type:'GET', dataType:'xml', url: 'https://www.reddit.com/'+selected_subreddit+'.rss', timeout:5000, success:rss_success, error:feed_err, async: false});
 }
 
-function get_num_comments(link) {
-  var num_comments;
-  var address = link + ".json?";
-  $.ajax({
-    url: address,
-    dataType: 'json',
-    async: false,
-    success: function(data) {
-      num_comments = parseInt(data[0].data.children[0].data.num_comments);
-    },
-    error: feed_err
-  });
-  return num_comments;
+function get_num_comments(link) { 
+  var address = "https://www.reddit.com/" + link + ".json?";
+  var x = new Array();
+    $.ajax({
+      url: address,
+      dataType: 'json',
+      async: false,
+      success: function(data) {
+        for (var i=0; i<20; i++) {
+          x[i] = data.data.children[i].data.num_comments;
+        }
+      }
+    });
+    return x;
 }
 
 function rss_success(doc) {
@@ -87,6 +88,7 @@ function parse_post_links(doc) {
 	}
   var count = Math.min(entries.length, maxFeedItems);
   var links = new Array();
+  var num_comments = get_num_comments(localStorage["reddit_subreddit"]);
   for (var i=0; i< count; i++) {
     item = entries.item(i);
     var post_link = new Object();
@@ -125,7 +127,7 @@ function parse_post_links(doc) {
       post_link.CommentsLink = '';
     }
 
-    post_link.num_comments = get_num_comments(commentsLinkText);
+    post_link.num_comments = num_comments[i];
 
     links.push(post_link);
   }
