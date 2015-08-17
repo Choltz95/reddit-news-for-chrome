@@ -8,7 +8,7 @@ for (i = 0; i < localStorage.length; i++)   {
 
 $(function(){
   restore_options();
-  $('.background-tabs-radio, #RequestInterval, #number_events, #subreddit').change(function(){
+  $('.background-tabs-radio, #RequestInterval, #number_events, #subreddit, .upvotes-radio').change(function(){
     save_options();
   });
 });
@@ -16,12 +16,14 @@ var selectSubreddit;
 var selectMaxEvents;
 var selectReqInterval;
 var radioBackgroundTabs;
+var radioUpvotes;
 
 function init_variables() {
   selectSubreddit = document.getElementById("subreddit");
   selectMaxEvents = document.getElementById("number_events");
   selectReqInterval = document.getElementById("RequestInterval");
   radioBackgroundTabs = document.getElementsByName("BackgroundTabs");
+  radioUpvotes = document.getElementsByName("upvotes");
 }
 
 function restore_options() {
@@ -53,6 +55,12 @@ function restore_options() {
       radioBackgroundTabs[i].checked = "true";
     }
   }
+  var upvotes = localStorage["reddit_upvotes"];
+  for (var i=0; i<radioUpvotes.length; i++) {
+    if (radioUpvotes[i].value == upvotes) {
+      radioUpvotes[i].checked = "true";
+    }
+  }
 }
 
 function save_options() {
@@ -68,6 +76,13 @@ function save_options() {
   for (var i=0; i<radioBackgroundTabs.length; i++) {
     if (radioBackgroundTabs[i].checked) {
       localStorage["reddit_background_tabs"] = radioBackgroundTabs[i].value;
+      break;
+    }
+  }
+
+  for (var i=0; i<radioUpvotes.length; i++) {
+    if (radioUpvotes[i].checked) {
+      localStorage["reddit_upvotes"] = radioUpvotes[i].value;
       break;
     }
   }

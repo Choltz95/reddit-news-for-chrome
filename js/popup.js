@@ -20,18 +20,21 @@ function main() {
   }
 }
 
+// draw popup
 function build_popup(links) {
   var header = document.getElementById("header");
   var feed = document.getElementById("feed");
   var issueLink = document.getElementById("issues");
-  if(localStorage["reddit_subreddit"]=="") {$("#subreddit").text("Front Page");}
-  else {$("#subreddit").text(localStorage["reddit_subreddit"]);}
+  if(localStorage["reddit_subreddit"]=="") { $("#subreddit").text("Front Page"); $("#subreddit").attr('href',"http://reddit.com"); }
+  else { $("#subreddit").text(localStorage["reddit_subreddit"]); $("#subreddit").attr('href', "http://reddit.com" + localStorage["reddit_subreddit"]); }
 
   issueLink.addEventListener("click", open_link_front);
 
   //Setup Title Link
   var title = document.getElementById("title");
   title.addEventListener("click", open_link);
+  var subreddit = document.getElementById("subreddit");
+  subreddit.addEventListener("click", open_link);
   
   //Setup search button
   var searchButton = document.getElementById("searchbutton");
@@ -46,12 +49,16 @@ function build_popup(links) {
     var link_col = document.createElement("td")
     var title = document.createElement("a");
       title.className = "link_title";
-      title.innerText = post_link.Title;
+      if(localStorage["reddit_upvotes"] == "true") {
+        title.innerText =  "(" + post_link.score + ") " + post_link.Title;
+      } else {
+        title.innerText =  post_link.Title;
+      }
       title.href = post_link.Link;
       title.addEventListener("click", open_link);
     var comments = document.createElement("a");
       comments.className = "comments";
-      comments.innerText = post_link.num_comments + " comments";
+      comments.innerText =  post_link.num_comments + " comments";
       comments.href = post_link.CommentsLink;
       comments.addEventListener("click", open_link);
     link_col.appendChild(title);

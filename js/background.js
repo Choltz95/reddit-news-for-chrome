@@ -9,5 +9,6 @@ init_options("reddit_request_interval", 1200000);
 init_options("reddit_background_tabs", false);
 init_options("reddit_max_events", 10);
 init_options("reddit_subreddit", "");
+init_options("reddit_upvotes", false);
 
 init_request();

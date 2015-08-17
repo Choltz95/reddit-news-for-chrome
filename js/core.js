@@ -36,7 +36,7 @@ function update_feed() {
   $.ajax({type:'GET', dataType:'xml', url: 'https://www.reddit.com/'+selected_subreddit+'.rss', timeout:5000, success:rss_success, error:feed_err, async: false});
 }
 
-function get_num_comments(link) { 
+function get_num_comments(link) { // get # comments, score 
   var address = "https://www.reddit.com/" + link + ".json?";
   var x = new Array();
     $.ajax({
@@ -45,7 +45,9 @@ function get_num_comments(link) {
       async: false,
       success: function(data) {
         for (var i=0; i<20; i++) {
-          x[i] = data.data.children[i].data.num_comments;
+          x[i] = new Array(2)
+          x[i][0] = data.data.children[i].data.num_comments;
+          x[i][1] = data.data.children[i].data.score;
         }
       }
     });
@@ -127,7 +129,8 @@ function parse_post_links(doc) {
       post_link.CommentsLink = '';
     }
 
-    post_link.num_comments = num_comments[i];
+    post_link.num_comments = num_comments[i][0]; // set number of comments
+    post_link.score = num_comments[i][1];
 
     links.push(post_link);
   }
