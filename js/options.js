@@ -1,4 +1,4 @@
-/*
+/* DEBUG
 var i;
 console.log("local storage");
 for (i = 0; i < localStorage.length; i++)   {

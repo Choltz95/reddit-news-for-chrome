@@ -1,19 +1,18 @@
 TODO
 
-MVP
 
-When you install the Chrome Extension, you should be able to connect to the
-network of nodes and assume membership of network, and be able to search for
-keywords immediately.
+✓ recovering from browser exit
+✓ save data + user defined options to local storage
+✓ add options to view post data - upvotes, comments
+✓ fix refresh
 
-✓ Recovering from browser exit
 
 Pending
 
-- switch to use json from rss
+- transition to use json from rss
 - provide news for a default subreddit
 - Add more information on popup
+- view images in extension
+- view video in extension
+- searching
 - Add local search for PLOS, ArXiV, PubMed and other APIs.
-
-Backlog
-

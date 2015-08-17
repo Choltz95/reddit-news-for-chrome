@@ -49,10 +49,13 @@ function build_popup(links) {
     var link_col = document.createElement("td")
     var title = document.createElement("a");
       title.className = "link_title";
+      if(/(jpg|gif|png)$/.test(post_link.Link)) { 
+        post_link.Title = "<font color=\"orange\"> * </font>" + post_link.Title;
+      }
       if(localStorage["reddit_upvotes"] == "true") {
         title.innerText =  "(" + post_link.score + ") " + post_link.Title;
       } else {
-        title.innerText =  post_link.Title;
+        title.innerHTML =  post_link.Title;
       }
       title.href = post_link.Link;
       title.addEventListener("click", open_link);
@@ -68,6 +71,7 @@ function build_popup(links) {
     feed.appendChild(row);
   }
   hide_element("spinner");
+  hide_element("image");
   display_element("container");
 }
 
@@ -91,6 +95,7 @@ function refresh_links() {
   while(linkTable.hasChildNodes()) linkTable.removeChild(linkTable.firstChild); //Remove all current links
   toggle("container");
   toggle("spinner");
+//  toggle("image");
   buildPopupAfterResponse = true;
   update_feed();
   update_refresh_time();

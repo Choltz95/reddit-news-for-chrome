@@ -49,7 +49,8 @@ function get_num_comments(link) { // get # comments, score
           x[i][0] = data.data.children[i].data.num_comments;
           x[i][1] = data.data.children[i].data.score;
         }
-      }
+      },
+      error:feed_err
     });
     return x;
 }
@@ -68,10 +69,6 @@ function rss_success(doc) {
 	localStorage["reddit_last_refresh"] = (new Date()).getTime();
 }
 
-function update_refresh_time() {
-  localStorage["reddit_last_refresh"] = (new Date()).getTime();
-}
-
 function feed_err(xhr, type, error) {
   rss_parse_err('Failed to fetch feed.');
 }
@@ -81,6 +78,10 @@ function rss_parse_err(error) {
   feed.className = "error"
   feed.innerText = "Error: " + error;
   localStorage["reddit_last_refresh"] = localStorage["reddit_last_refresh"] + retryMilliseconds;
+}
+
+function update_refresh_time() {
+  localStorage["reddit_last_refresh"] = (new Date()).getTime();
 }
 
 function parse_post_links(doc) {
@@ -94,7 +95,7 @@ function parse_post_links(doc) {
   for (var i=0; i< count; i++) {
     item = entries.item(i);
     var post_link = new Object();
-    //Grab the title
+    // Grab the title
     var itemTitle = item.getElementsByTagName('title')[0];
     if (itemTitle) {
       post_link.Title = itemTitle.textContent;
@@ -102,11 +103,11 @@ function parse_post_links(doc) {
       post_link.Title = "Unknown Title";
     }
     
-    //Grab the post link
+    // Grab the post link
     var item_description = item.getElementsByTagName('description')[0].textContent;
     var regex = /(?:<a href=")([^<]*?)(?:">)(?=\[link\])/g;
-    var link = (regex.exec(item_description))[1]; // grab link from description text w/ regex and conver to dom object
-    var xmlString = "<link>" + link + "</link>" // I should make a function for this
+    var link = (regex.exec(item_description))[1]; // grab link from description text w/ regex and convert to dom object
+    var xmlString = "<link>" + link + "</link>" // I should make a function for this - parse xml and create node-list object
       , parser = new DOMParser()
       , doc = parser.parseFromString(xmlString, "text/xml");
     itemLink = doc.firstChild;
@@ -120,7 +121,7 @@ function parse_post_links(doc) {
       post_link.Link = '';
     }
 
-    //Grab the comments link
+    // Grab the comments link
     var commentsLink = item.getElementsByTagName('link')[0];
     var commentsLinkText = commentsLink.textContent;
     if (commentsLink) {
@@ -166,7 +167,14 @@ function open_options() {
 
 function open_link(e) {
   e.preventDefault();
-  open_url(this.href, (localStorage['reddit_background_tabs'] == 'false'));
+  // if this.href links to image open in extension, else...
+  if(/(jpg|gif|png)$/.test(this.href)) { 
+    document.getElementById('posted_image').src=this.href; 
+    hide_element("container");
+    display_element("image");
+  } else {
+    open_url(this.href, (localStorage['reddit_background_tabs'] == 'false'));
+  }
 }
 
 function open_link_front(e) {
