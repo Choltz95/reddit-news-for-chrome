@@ -4,9 +4,9 @@ window.onload = function(){
 };
 function init_events() {
 //  $('#submitLink').click(submit_cur_tab);
-  $('#refresh').click(refresh_links);
+  $('.ref').click(refresh_links);
   $('#searchbox').keypress(search_on_enter);
-  $('#options').click(function(){
+  $('.opt').click(function(){
     open_options();
   });
 }
@@ -24,11 +24,13 @@ function main() {
 function build_popup(links) {
   var header = document.getElementById("header");
   var feed = document.getElementById("feed");
-  var issueLink = document.getElementById("issues");
+  var issueLink = document.getElementsByClassName("issue");
   if(localStorage["reddit_subreddit"]=="") { $("#subreddit").text("Front Page"); $("#subreddit").attr('href',"http://reddit.com"); }
   else { $("#subreddit").text(localStorage["reddit_subreddit"]); $("#subreddit").attr('href', "http://reddit.com" + localStorage["reddit_subreddit"]); }
 
-  issueLink.addEventListener("click", open_link_front);
+  for(var i=0;i<issueLink.length;i++){
+    issueLink[i].addEventListener("click", open_link_front);
+  }
 
   //Setup Title Link
   var title = document.getElementById("title");
