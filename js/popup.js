@@ -95,7 +95,6 @@ function refresh_links() {
   while(linkTable.hasChildNodes()) linkTable.removeChild(linkTable.firstChild); //Remove all current links
   toggle("container");
   toggle("spinner");
-//  toggle("image");
   buildPopupAfterResponse = true;
   update_feed();
   update_refresh_time();

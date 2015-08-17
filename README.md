@@ -1,7 +1,7 @@
 <snippet>
   <content>
 # Reddit-News-for-Chrome
-This extension parses reddit rss and json providing a feed of the top ten articles posted on a user defined subreddit.
+This extension parses reddit rss and json providing a feed of the top ten articles posted on a user defined subreddit. Right now, the code is in pretty poor shape. I am working on refactoring the structure and adding features. I would definitely appreciate any bug notifications or feature requests.
 ## Installation
 Stable version on chrome webstore: https://chrome.google.com/webstore/detail/reddit-news/pbhecjpnbjokeahpnaifpbjihffikbpd.
 

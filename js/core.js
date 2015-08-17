@@ -32,7 +32,7 @@ function update_if_ready(force) {
 	}
 }
 
-function update_feed() {
+function update_feed() { // update from rss
   $.ajax({type:'GET', dataType:'xml', url: 'https://www.reddit.com/'+selected_subreddit+'.rss', timeout:5000, success:rss_success, error:feed_err, async: false});
 }
 
@@ -137,7 +137,6 @@ function parse_post_links(doc) {
   }
   return links;
 }
-
 
 function save_links(links) {
 	localStorage["reddit_num_links"] = links.length;

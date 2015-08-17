@@ -12,6 +12,7 @@ $(function(){
     save_options();
   });
 });
+
 var selectSubreddit;
 var selectMaxEvents;
 var selectReqInterval;

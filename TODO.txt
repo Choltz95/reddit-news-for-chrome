@@ -1,6 +1,6 @@
 TODO
 
-
+✓ view static images in extension
 ✓ recovering from browser exit
 ✓ save data + user defined options to local storage
 ✓ add options to view post data - upvotes, comments
@@ -11,8 +11,11 @@ Pending
 
 - transition to use json from rss
 - provide news for a default subreddit
-- Add more information on popup
-- view images in extension
+- view gifs and animations in extension
 - view video in extension
-- searching
+- alter url of imgur images to include .jpg/.png...
+- preview and link to top comments in extension
+- fix searching
 - Add local search for PLOS, ArXiV, PubMed and other APIs.
+- make extension prettier
+- cleanup code
