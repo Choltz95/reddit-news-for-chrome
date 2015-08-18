@@ -55,7 +55,7 @@ function build_popup(links) {
         post_link.Title = "<font color=\"orange\"> * </font>" + post_link.Title;
       }
       if(localStorage["reddit_upvotes"] == "true") {
-        title.innerText =  "(" + post_link.score + ") " + post_link.Title;
+        title.innerHTML =  "(" + post_link.score + ") " + post_link.Title;
       } else {
         title.innerHTML =  post_link.Title;
       }

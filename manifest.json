@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Reddit News",
-  "version": "4.03",
+  "version": "4.04",
   "description": "Displays recent stories from Reddit",
   "icons": { "48": "images/icon48.png",
 	           "128": "images/icon128.png" },
