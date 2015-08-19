@@ -51,7 +51,7 @@ function build_popup(links) {
     var link_col = document.createElement("td")
     var title = document.createElement("a");
       title.className = "link_title";
-      if(/(jpg|gif|png)$/.test(post_link.Link)) { 
+      if(/(.jpg|.gif|.png)$/.test(post_link.Link) || /(imgur)/.test(this.href) && !/a/.test(this.href) && !/gallery/.test(this.href)) { 
         post_link.Title = "<font color=\"orange\"> * </font>" + post_link.Title;
       }
       if(localStorage["reddit_upvotes"] == "true") {

@@ -1,12 +1,13 @@
 {
   "manifest_version": 2,
-  "name": "Reddit News",
-  "version": "4.04",
+  "name": "Redd Reader",
+  "version": "4.3.5",
   "description": "Displays recent stories from Reddit",
-  "icons": { "48": "images/icon48.png",
+  "icons": { "18": "images/icon18.png",
+             "48": "images/icon48.png",
 	           "128": "images/icon128.png" },
   "browser_action": {
-    "default_title": "Reddit News",
+    "default_title": "Redd Reader",
     "default_icon": "images/icon18.png",
     "default_popup": "popup.html"
   },

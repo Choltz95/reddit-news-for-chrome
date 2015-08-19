@@ -167,8 +167,12 @@ function open_options() {
 function open_link(e) {
   e.preventDefault();
   // if this.href links to image open in extension, else...
-  if(/(jpg|gif|png)$/.test(this.href)) { 
+  if(/(.jpg|.gif|.png)$/.test(this.href)) { 
     document.getElementById('posted_image').src=this.href; 
+    hide_element("container");
+    display_element("image");
+  } else if(/(imgur)/.test(this.href) && !/a/.test(this.href) && !/gallery/.test(this.href)) { // append jpg to imgur link - not safe and test for galleries...I should use imgurs api
+    document.getElementById('posted_image').src = this.href + '.jpg';
     hide_element("container");
     display_element("image");
   } else {

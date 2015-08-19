@@ -5,6 +5,7 @@ TODO
 ✓ save data + user defined options to local storage
 ✓ add options to view post data - upvotes, comments
 ✓ fix refresh
+✓ custom logos - thanks to /u/Pnmelville
 
 
 Pending
