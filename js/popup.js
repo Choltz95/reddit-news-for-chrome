@@ -3,7 +3,6 @@ window.onload = function(){
   init_events();
 };
 function init_events() {
-//  $('#submitLink').click(submit_cur_tab);
   $('.ref').click(refresh_links);
   $('#searchbox').keypress(search_on_enter);
   $('.opt').click(function(){

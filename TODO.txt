@@ -13,9 +13,8 @@ TODO
 Pending
 
 - transition to use json from rss
-- view gifs in extension
+- view gifvs in extension
 - view video in extension
 - preview and link to top comments in extension
-- Add local search for PLOS, ArXiV, PubMed and other APIs.
 - make extension prettier
 - cleanup code

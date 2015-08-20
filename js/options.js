@@ -14,6 +14,7 @@ $(function(){
 });
 
 var selectSubreddit;
+var customSubreddit;
 var selectMaxEvents;
 var selectReqInterval;
 var radioBackgroundTabs;
@@ -21,6 +22,7 @@ var radioUpvotes;
 
 function init_variables() {
   selectSubreddit = document.getElementById("subreddit");
+  customSubreddit = document.getElementsByName("custom_subreddit")[0];
   selectMaxEvents = document.getElementById("number_events");
   selectReqInterval = document.getElementById("RequestInterval");
   radioBackgroundTabs = document.getElementsByName("BackgroundTabs");
@@ -65,18 +67,19 @@ function restore_options() {
 }
 
 function save_options() {
-  var subred = selectSubreddit.children[selectSubreddit.selectedIndex].value;
-  if (subred) {
-    document.getElementsByName("custom_subreddit")[0].style.display='none';
+  var selected = selectSubreddit.children[selectSubreddit.selectedIndex]
+  var subred = selected.value;
+  if (subred) { // if the selected subreddit is not other or Front page
+    customSubreddit.style.display='none';
     localStorage["reddit_subreddit"] = subred;
-  }  else {
-    if(selectSubreddit.children[selectSubreddit.selectedIndex].text != 'Front page') {
-      document.getElementsByName("custom_subreddit")[0].style.display='inline';
-      localStorage["reddit_subreddit"] = document.getElementsByName("custom_subreddit")[0].value;
-    } else { 
-      document.getElementsByName("custom_subreddit")[0].style.display='none'; 
-      localStorage["reddit_subreddit"] = subred;
-    }
+  } else {
+      if(selected.text != 'Front page') {
+        customSubreddit.style.display='inline';
+        localStorage["reddit_subreddit"] = customSubreddit.value;
+      } else { 
+        customSubreddit.style.display='none'; 
+        localStorage["reddit_subreddit"] = subred;
+      }
   }
 
   var stories = selectMaxEvents.children[selectMaxEvents.selectedIndex].value;
