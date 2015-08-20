@@ -69,9 +69,14 @@ function save_options() {
   if (subred) {
     document.getElementsByName("custom_subreddit")[0].style.display='none';
     localStorage["reddit_subreddit"] = subred;
-  } else{
-    document.getElementsByName("custom_subreddit")[0].style.display='inline';
-    localStorage["reddit_subreddit"] = document.getElementsByName("custom_subreddit")[0].value;
+  }  else {
+    if(selectSubreddit.children[selectSubreddit.selectedIndex].text != 'Front page') {
+      document.getElementsByName("custom_subreddit")[0].style.display='inline';
+      localStorage["reddit_subreddit"] = document.getElementsByName("custom_subreddit")[0].value;
+    } else { 
+      document.getElementsByName("custom_subreddit")[0].style.display='none'; 
+      localStorage["reddit_subreddit"] = subred;
+    }
   }
 
   var stories = selectMaxEvents.children[selectMaxEvents.selectedIndex].value;
