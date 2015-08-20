@@ -101,16 +101,3 @@ function refresh_links() {
   update_feed();
   update_refresh_time();
 }
-
-//Submit the current tab - not functional
-/*function submit_cur_tab() {
-  chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
-        var reddit_submit = "https://www.reddit.com/submit";
-        var submit_url = tabs[0].url;
-        var submit_title = tabs[0].title;
-        var win=  window.open(reddit_submit, '_blank');
-        win.focus();
-      }
-  );
-}*/
-

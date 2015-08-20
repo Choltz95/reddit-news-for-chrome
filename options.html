@@ -23,9 +23,10 @@
 				<option value="/r/science">/r/science</option>
 				<option value="/r/showerthoughts">/r/showerthoughts</option>
 				<option value="/r/pics">/r/pics</option>
-				<option value="">custom subreddits comming soon</option>
-			</select><br/><br/><br/>
-			<label for="number_events">Number of stories*:</label>
+				<option selected="selected" value="">other</option>
+			</select><input type="text" name="custom_subreddit" id="custom_subreddit" value="" style='display:none;'>
+			<br/><br/><br/>
+			<label for="number_events">Number of posts*:</label>
 			<select id="number_events" name="number_events">
 				<option value="1">1</option>
 				<option value="5">5</option>
@@ -33,7 +34,7 @@
 				<option value="15">15</option>
 				<option value="20">20</option>
 			</select><br/><br/><br/>
-			<label for="RequestInterval">Update stories every:</label>
+			<label for="RequestInterval">Update posts every:</label>
 			<select id="RequestInterval" name="RequestInterval">
 				<option value="300000">5 minutes</option>
 				<option value="600000">10 minutes</option>

@@ -8,7 +8,7 @@ for (i = 0; i < localStorage.length; i++)   {
 
 $(function(){
   restore_options();
-  $('.background-tabs-radio, #RequestInterval, #number_events, #subreddit, .upvotes-radio').change(function(){
+  $('.background-tabs-radio, #RequestInterval, #number_events, #subreddit, .upvotes-radio, #custom_subreddit').change(function(){
     save_options();
   });
 });
@@ -66,7 +66,13 @@ function restore_options() {
 
 function save_options() {
   var subred = selectSubreddit.children[selectSubreddit.selectedIndex].value;
-  localStorage["reddit_subreddit"] = subred;
+  if (subred) {
+    document.getElementsByName("custom_subreddit")[0].style.display='none';
+    localStorage["reddit_subreddit"] = subred;
+  } else{
+    document.getElementsByName("custom_subreddit")[0].style.display='inline';
+    localStorage["reddit_subreddit"] = document.getElementsByName("custom_subreddit")[0].value;
+  }
 
   var stories = selectMaxEvents.children[selectMaxEvents.selectedIndex].value;
   localStorage["reddit_max_events"] = stories;
@@ -88,4 +94,3 @@ function save_options() {
     }
   }
 }
-
