@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Redd Reader",
-  "version": "4.3.5",
+  "version": "4.4.2",
   "description": "Displays recent stories from Reddit",
   "icons": { "18": "images/icon18.png",
              "48": "images/icon48.png",

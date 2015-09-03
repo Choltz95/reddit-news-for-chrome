@@ -13,6 +13,7 @@ TODO
 Pending
 
 - transition to use json from rss
+- themes
 - view gifvs in extension
 - view video in extension
 - preview and link to top comments in extension
